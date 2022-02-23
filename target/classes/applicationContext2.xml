@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+			<!-- DI 프로퍼티 설정 방식 -->
+			<bean id="registerService" class="kr.spring.ch07.RegisterService">
+				<property name="registerDAO">
+					
+					<!-- ref : 주입할 의존 객체에 해당하는 빈 객체의 식별 값 -->
+					<ref bean="registerDAO"/>
+				</property>
+			</bean>
+			<bean id="registerDAO" class="kr.spring.ch07.RegisterDAO"/>
+			
+			<!-- DI 프로퍼티 설정 방식 - 여러개의 프로퍼티 -->
+			<bean id="work" class="kr.spring.ch08.WorkController">
+				<property name="periodTime">
+					<value>10</value>
+				</property>
+				<property name="email">
+					<ref bean="email"/> <!-- 32라인 빈을 받아온 것 -->
+				</property>
+			</bean>
+			<bean id="email" class="kr.spring.ch08.EmailSender"/>
+			
+			<!-- XML 네임스페이스를 이용한 프로퍼티 설정 -->
+			<bean id="upload" class="kr.spring.ch09.UploadController" p:timeout="50" p:image-ref="image"/> <!-- ref -> 객체 , 안붙히면 일반 데이터 -->		
+			<bean id="image" class="kr.spring.ch09.ImageSender"/> <!-- 35라인에 image-ref에 객체 대입 -->
+			
+			
+			<!-- List 타입 프로퍼티 설정 -->
+			<bean id="performanceMonitor" class="kr.spring.ch10.PerformanceMonitor">
+				<property name="deviations">
+					<list>
+						<value>0.2</value>
+						<value>0.3</value>
+						<!-- 문자열일 경우 <value>문자열</value> -->
+						<!-- 객체일 경우 <ref bean="SomeDemo"/> -->
+					</list>
+				</property>
+			</bean>
+			
+			<!-- Map 타입 프로퍼티 설정 -->
+			<bean id="protocolHandlerFactory" class="kr.spring.ch11.ProtocolHandlerFactory">
+				<property name="map">
+					<map>
+						<entry>
+							<key><value>soap</value></key> <!-- 키 -->
+							<ref bean="soapHandler"/> <!-- 밸류 -->
+						</entry>
+						<entry>
+							<key><value>rest</value></key>
+							<ref bean="restHandler"/>
+						</entry>
+					</map>
+				</property>
+			</bean>
+			
+			<bean id="soapHandler" class="kr.spring.ch11.SoapHandler"/>
+			<bean id="restHandler" class="kr.spring.ch11.RestHandler"/>
+			
+			<!-- Set 타입 프로퍼티 설정 -->
+			<bean id="videoClient" class="kr.spring.ch12.VideoClient">
+				<property name="subSet">
+					<set>
+						<value>10</value>
+						<value>20</value>
+					</set>
+				</property>
+			</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
