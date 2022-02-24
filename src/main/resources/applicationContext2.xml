@@ -76,6 +76,14 @@
 					</set>
 				</property>
 			</bean>
+			
+			
+			<!-- Properties 타입 프로퍼티 설정 -->
+			<bean id="bookclient" class="kr.spring.ch13.BookClient">
+			<property name="prop">
+				
+			</property>
+			</bean>
 </beans>
 
 
